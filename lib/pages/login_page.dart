@@ -20,22 +20,29 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             Stack(
+              alignment: Alignment.center,
               children: [
                 CarouselLogin(),
                 Positioned(
-                    top: 30,
-                    left: 30,
-                    child: Image(
-                      image: AssetImage('assets/oidoamigo2.png'),
-                      width: 180,
-                    )),
-                Positioned(
-                  bottom: 120,
+                  bottom: 100,
                   left: 25,
                   right: 25,
                   child: ChangeNotifierProvider(
                     create: (_) => LoginFormProviders(),
                     child: LoginForm(),
+                  ),
+                ),
+                Positioned(
+                  bottom: 350,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 4),
+                    child: Container(
+                        width: 120,
+                        height: 120,
+                        child: Image(
+                          image: AssetImage('assets/logorojo.png'),
+                          fit: BoxFit.fill,
+                        )),
                   ),
                 ),
               ],
@@ -52,6 +59,9 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginForm = Provider.of<LoginFormProviders>(context);
     return Container(
+      padding: EdgeInsets.all(14),
+      decoration: BoxDecoration(
+          color: Colors.white54, borderRadius: BorderRadius.circular(12)),
       width: double.infinity,
       child: Form(
         key: loginForm.loginformkey,
@@ -59,7 +69,7 @@ class LoginForm extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 10,
+              height: 60,
             ),
             TextFormField(
               onChanged: (value) => loginForm.nomuser = value,
@@ -69,17 +79,18 @@ class LoginForm extends StatelessWidget {
               },
               autocorrect: false,
               decoration: InputDecoration(
-                fillColor: Colors.white,
+                fillColor: Color.fromRGBO(133, 24, 51, 1),
                 filled: true,
                 prefixIcon: Icon(Icons.account_circle_rounded),
                 labelText: 'Username',
+                labelStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             TextFormField(
               obscureText: true,
@@ -91,15 +102,16 @@ class LoginForm extends StatelessWidget {
               autocorrect: false,
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock_outline),
-                  fillColor: Colors.white,
+                  fillColor: Color.fromRGBO(133, 24, 51, 1),
                   filled: true,
+                  labelStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   labelText: 'Password'),
             ),
             SizedBox(
-              height: 10,
+              height: 40,
             ),
             MaterialButton(
               color: Color.fromRGBO(133, 24, 51, 1),
@@ -120,7 +132,7 @@ class LoginForm extends StatelessWidget {
                 }
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 child: Text(
                   'Iniciar Sesión',
                   style: TextStyle(color: Colors.white),
