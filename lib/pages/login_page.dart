@@ -1,7 +1,6 @@
 import 'package:app_movile_oido_amigo/providers/login_form_provider.dart';
 import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:app_movile_oido_amigo/services/notifier_service.dart';
-import 'package:app_movile_oido_amigo/widgets/carousel_login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,41 +14,61 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    var getScreenHeight = MediaQuery.of(context).size.height;
+    var getScreenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                CarouselLogin(),
-                Positioned(
-                  bottom: 100,
-                  left: 25,
-                  right: 25,
-                  child: ChangeNotifierProvider(
-                    create: (_) => LoginFormProviders(),
-                    child: LoginForm(),
-                  ),
+          child: Stack(
+        children: [
+          Column(
+            children: [
+              Container(
+                  width: getScreenWidth,
+                  height: 150,
+                  child: Image(
+                    image: AssetImage('assets/topnuevo1.png'),
+                    fit: BoxFit.fill,
+                  )),
+              Container(
+                  width: getScreenWidth,
+                  height: 250,
+                  child: Image(
+                    image: AssetImage('assets/fotopersonas.png'),
+                    fit: BoxFit.fill,
+                  )),
+              Container(
+                height: getScreenHeight * .5,
+                child: ChangeNotifierProvider(
+                  create: (_) => LoginFormProviders(),
+                  child: LoginForm(),
                 ),
-                Positioned(
-                  bottom: 350,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 4),
-                    child: Container(
-                        width: 120,
-                        height: 120,
-                        child: Image(
-                          image: AssetImage('assets/logorojo.png'),
-                          fit: BoxFit.fill,
-                        )),
-                  ),
+              ),
+            ],
+          ),
+          Positioned(
+            left: getScreenWidth * .38,
+            top: 60,
+            child: Container(
+                width: 100,
+                height: 100,
+                child: Image(
+                  image: AssetImage('assets/logorojo.png'),
+                  fit: BoxFit.fill,
+                )),
+          ),
+          Positioned(
+              left: getScreenWidth * .19,
+              top: 400,
+              child: Text(
+                'Bienvenido',
+                style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(143, 20, 64, 1),
                 ),
-              ],
-            )
-          ],
-        ),
-      ),
+              ))
+        ],
+      )),
     );
   }
 }
@@ -63,13 +82,14 @@ class LoginForm extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white54, borderRadius: BorderRadius.circular(12)),
       width: double.infinity,
+      height: 500,
       child: Form(
         key: loginForm.loginformkey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
             SizedBox(
-              height: 60,
+              height: 50,
             ),
             TextFormField(
               onChanged: (value) => loginForm.nomuser = value,
@@ -79,12 +99,14 @@ class LoginForm extends StatelessWidget {
               },
               autocorrect: false,
               decoration: InputDecoration(
-                fillColor: Color.fromRGBO(133, 24, 51, 1),
+                fillColor: Colors.white,
                 filled: true,
                 prefixIcon: Icon(Icons.account_circle_rounded),
                 labelText: 'Username',
-                labelStyle: TextStyle(color: Colors.white),
-                border: OutlineInputBorder(
+                labelStyle: TextStyle(color: Color.fromRGBO(133, 24, 51, 1)),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Color.fromRGBO(133, 24, 51, 1), width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
               ),
@@ -102,16 +124,28 @@ class LoginForm extends StatelessWidget {
               autocorrect: false,
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock_outline),
-                  fillColor: Color.fromRGBO(133, 24, 51, 1),
+                  fillColor: Colors.white,
                   filled: true,
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(
+                  labelStyle: TextStyle(color: Color.fromRGBO(133, 24, 51, 1)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(133, 24, 51, 1), width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   labelText: 'Password'),
             ),
             SizedBox(
-              height: 40,
+              height: 25,
+            ),
+            Text(
+              'Olvidó su contraseña?',
+              style: TextStyle(
+                  color: Color.fromRGBO(133, 24, 51, 1),
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 25,
             ),
             MaterialButton(
               color: Color.fromRGBO(133, 24, 51, 1),
@@ -135,7 +169,7 @@ class LoginForm extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 child: Text(
                   'Iniciar Sesión',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
             ),
