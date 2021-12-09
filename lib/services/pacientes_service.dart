@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
@@ -31,4 +32,24 @@ class PacienteService extends ChangeNotifier {
 
     return data;
   }
+
+  Future<void> finPaciente(String id) async {
+    try {
+      String token = await storage.read(key: 'accessToken') ?? '';
+      final url = Uri.http(urlBase, '/api/paciente/paciente-fin/' + id);
+      final resp =
+          await http.put(url, headers: {'Authorization': 'Bearer $token'});
+
+      showToatFin();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void showToatFin() => Fluttertoast.showToast(
+      msg: "Paciente Finalizado exitosamente...!",
+      fontSize: 18,
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.green[300],
+      textColor: Colors.white);
 }

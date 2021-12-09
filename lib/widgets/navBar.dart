@@ -3,8 +3,30 @@ import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class NavBar extends StatelessWidget {
+class NavBar extends StatefulWidget {
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
   AuthServices authServices = AuthServices();
+
+  List user = [];
+
+  initialise() {
+    authServices.readPsicologo().then((value) => {
+          setState(() {
+            user = value;
+          })
+        });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initialise();
+  }
+
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthServices>(context, listen: false);

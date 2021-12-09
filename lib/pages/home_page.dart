@@ -1,3 +1,7 @@
+import 'package:app_movile_oido_amigo/pages/reporte1_page.dart';
+import 'package:app_movile_oido_amigo/pages/reporte2_page.dart';
+import 'package:app_movile_oido_amigo/pages/reporte3_page.dart';
+import 'package:app_movile_oido_amigo/pages/reportef_page.dart';
 import 'package:app_movile_oido_amigo/pages/sesion1_page.dart';
 import 'package:app_movile_oido_amigo/pages/sesion2_page.dart';
 import 'package:app_movile_oido_amigo/pages/sesion3_page.dart';
@@ -14,10 +18,28 @@ class HomePage extends StatefulWidget {
 
   @override
   _HomePageState createState() => _HomePageState();
+  PacienteService pacSerivce = PacienteService();
 }
 
 class _HomePageState extends State<HomePage> {
   Ses1Service ses1Service = Ses1Service();
+  List pac = [];
+  PacienteService pacSerivce = PacienteService();
+
+  initialise() {
+    pacSerivce.readPaciente().then((value) => {
+          setState(() {
+            pac = value;
+          }),
+        });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialise();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +90,11 @@ class _HomePageState extends State<HomePage> {
               top: 10,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('repf');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ReporteF(ses1service: ses1Service)));
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -125,7 +151,11 @@ class _HomePageState extends State<HomePage> {
               top: 250,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('rep1');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Reporte1(ses1service: ses1Service)));
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -171,7 +201,11 @@ class _HomePageState extends State<HomePage> {
               top: 250,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('rep3');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Reporte3(ses1service: ses1Service)));
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -217,7 +251,11 @@ class _HomePageState extends State<HomePage> {
               top: 250,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('rep2');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Reporte2(ses1service: ses1Service)));
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -255,7 +293,10 @@ class _HomePageState extends State<HomePage> {
                       color: Color.fromRGBO(133, 24, 51, 1),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
-                      onPressed: () {},
+                      onPressed: () {
+                        widget.pacSerivce.finPaciente(pac[0]['idpaciente']);
+                        print(pac[0]['idpaciente']);
+                      },
                       child: Text(
                         'Finalizar Paciente',
                         style: TextStyle(

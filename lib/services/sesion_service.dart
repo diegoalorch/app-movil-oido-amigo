@@ -83,8 +83,154 @@ class Ses1Service {
     }
   }
 
+  Future<void> crateRep1(
+      String obserg,
+      String ante,
+      String problem,
+      String accreal,
+      String conclu,
+      String recotare,
+      String fecha,
+      int idpaciente) async {
+    try {
+      String token = await storage.read(key: 'accessToken') ?? '';
+      final url = Uri.http(urlBase, '/api/paciente/create-reporte1');
+      final resp = await http.post(url,
+          body: json.encode({
+            "idpsicologo": 1,
+            "idpaciente": idpaciente,
+            "obserg": obserg,
+            "ante": ante,
+            "problem": problem,
+            "accreal": accreal,
+            "conclu": conclu,
+            "recotare": recotare,
+            "fecha": fecha,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer $token'
+          });
+
+      showToatRep();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> crateRep2(
+      String obserg,
+      String ante,
+      String problem,
+      String accreal,
+      String conclu,
+      String recotare,
+      String fecha,
+      int idpaciente) async {
+    try {
+      String token = await storage.read(key: 'accessToken') ?? '';
+      final url = Uri.http(urlBase, '/api/paciente/create-reporte2');
+      final resp = await http.post(url,
+          body: json.encode({
+            "idpsicologo": 1,
+            "idpaciente": idpaciente,
+            "obserg": obserg,
+            "ante": ante,
+            "problem": problem,
+            "accreal": accreal,
+            "conclu": conclu,
+            "recotare": recotare,
+            "fecha": fecha,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer $token'
+          });
+
+      showToatRep();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> crateRep3(
+      String obserg,
+      String ante,
+      String problem,
+      String accreal,
+      String conclu,
+      String recotare,
+      String fecha,
+      int idpaciente) async {
+    try {
+      String token = await storage.read(key: 'accessToken') ?? '';
+      final url = Uri.http(urlBase, '/api/paciente/create-reporte3');
+      final resp = await http.post(url,
+          body: json.encode({
+            "idpsicologo": 1,
+            "idpaciente": idpaciente,
+            "obserg": obserg,
+            "ante": ante,
+            "problem": problem,
+            "accreal": accreal,
+            "conclu": conclu,
+            "recotare": recotare,
+            "fecha": fecha,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer $token'
+          });
+
+      showToatRep();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> crateRepf(
+      String obserg,
+      String ante,
+      String problem,
+      String accreal,
+      String conclu,
+      String recotare,
+      String fecha,
+      int idpaciente) async {
+    try {
+      String token = await storage.read(key: 'accessToken') ?? '';
+      final url = Uri.http(urlBase, '/api/paciente/create-reportef');
+      final resp = await http.post(url,
+          body: json.encode({
+            "idpsicologo": 1,
+            "idpaciente": idpaciente,
+            "obserg": obserg,
+            "ante": ante,
+            "problem": problem,
+            "accreal": accreal,
+            "conclu": conclu,
+            "recotare": recotare,
+            "fecha": fecha,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer $token'
+          });
+
+      showToatRep();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void showToatSes() => Fluttertoast.showToast(
       msg: "Sesión creada exitosamente...!",
+      fontSize: 18,
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.green[300],
+      textColor: Colors.white);
+  void showToatRep() => Fluttertoast.showToast(
+      msg: "Reporte creado exitosamente...!",
       fontSize: 18,
       gravity: ToastGravity.TOP,
       backgroundColor: Colors.green[300],

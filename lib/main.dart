@@ -52,10 +52,6 @@ class MyApp extends StatelessWidget {
         'home': (_) => HomePage(),
         'check': (_) => CheckAuthPage(),
         'pac': (_) => Paciente(),
-        'rep1': (_) => Reporte1(),
-        'rep2': (_) => Reporte2(),
-        'rep3': (_) => Reporte3(),
-        'repf': (_) => ReporteF(),
       },
       initialRoute: 'check',
     );

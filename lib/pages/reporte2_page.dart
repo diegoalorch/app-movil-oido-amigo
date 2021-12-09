@@ -1,13 +1,42 @@
+import 'package:app_movile_oido_amigo/services/pacientes_service.dart';
+import 'package:app_movile_oido_amigo/services/sesion_service.dart';
 import 'package:flutter/material.dart';
 
 class Reporte2 extends StatefulWidget {
-  Reporte2({Key? key}) : super(key: key);
+  Reporte2({Key? key, required this.ses1service}) : super(key: key);
+  Ses1Service ses1service;
 
   @override
   _Reporte2State createState() => _Reporte2State();
 }
 
 class _Reporte2State extends State<Reporte2> {
+  TextEditingController obs = new TextEditingController();
+  TextEditingController ant = new TextEditingController();
+  TextEditingController pro = new TextEditingController();
+  TextEditingController acc = new TextEditingController();
+  TextEditingController con = new TextEditingController();
+  TextEditingController rec = new TextEditingController();
+  TextEditingController fecha = new TextEditingController();
+
+  List pac = [];
+  PacienteService pacSerivce = PacienteService();
+
+  initialise() {
+    pacSerivce.readPaciente().then((value) => {
+          setState(() {
+            pac = value;
+          }),
+        });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialise();
+  }
+
   @override
   Widget build(BuildContext context) {
     var getScreenHeight = MediaQuery.of(context).size.height;
@@ -109,6 +138,7 @@ class _Reporte2State extends State<Reporte2> {
                                       ),
                                     ),
                                     TextFormField(
+                                        controller: obs,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
@@ -133,6 +163,7 @@ class _Reporte2State extends State<Reporte2> {
                                       ),
                                     ),
                                     TextFormField(
+                                        controller: ant,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
@@ -157,6 +188,7 @@ class _Reporte2State extends State<Reporte2> {
                                       ),
                                     ),
                                     TextFormField(
+                                        controller: pro,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
@@ -181,6 +213,7 @@ class _Reporte2State extends State<Reporte2> {
                                       ),
                                     ),
                                     TextFormField(
+                                        controller: acc,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
@@ -205,6 +238,7 @@ class _Reporte2State extends State<Reporte2> {
                                       ),
                                     ),
                                     TextFormField(
+                                        controller: con,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
@@ -229,6 +263,7 @@ class _Reporte2State extends State<Reporte2> {
                                       ),
                                     ),
                                     TextFormField(
+                                        controller: rec,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
@@ -241,6 +276,28 @@ class _Reporte2State extends State<Reporte2> {
                                     SizedBox(
                                       height: 15,
                                     ),
+                                    Container(
+                                      width: double.infinity,
+                                      child: Text(
+                                        'Fecha',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromRGBO(133, 24, 51, 1),
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    TextFormField(
+                                        controller: fecha,
+                                        autocorrect: false,
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Color.fromRGBO(
+                                                    133, 24, 51, 1),
+                                                width: 2.0),
+                                          ),
+                                        )),
                                   ],
                                 ),
                               ),
@@ -258,7 +315,18 @@ class _Reporte2State extends State<Reporte2> {
                     color: Color.fromRGBO(133, 24, 51, 1),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.ses1service.crateRep2(
+                          obs.text,
+                          ant.text,
+                          pro.text,
+                          acc.text,
+                          con.text,
+                          rec.text,
+                          fecha.text,
+                          int.parse(pac[0]['idpaciente']));
+                      Navigator.pop(context, true);
+                    },
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 60, vertical: 10),
