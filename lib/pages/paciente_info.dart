@@ -207,12 +207,12 @@ class _PacienteState extends State<Paciente> {
                         ),
                       )),
                   Positioned(
-                    top: 5,
-                    left: 35,
+                    top: 8,
+                    left: 100,
                     child: Text(
                       'Paciente Asginado',
                       style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
                           color: Color.fromRGBO(143, 20, 64, 1),
                           fontWeight: FontWeight.bold),
                     ),

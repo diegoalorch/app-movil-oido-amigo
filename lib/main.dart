@@ -2,6 +2,7 @@ import 'package:app_movile_oido_amigo/pages/check_auth_page.dart';
 import 'package:app_movile_oido_amigo/pages/home_page.dart';
 import 'package:app_movile_oido_amigo/pages/login_page.dart';
 import 'package:app_movile_oido_amigo/pages/paciente_info.dart';
+import 'package:app_movile_oido_amigo/pages/settings_page.dart';
 import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:app_movile_oido_amigo/services/pacientes_service.dart';
 import 'widgets/navBar.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         'home': (_) => HomePage(),
         'check': (_) => CheckAuthPage(),
         'pac': (_) => Paciente(),
+        'settings': (_) => SettingsPage(),
       },
       initialRoute: 'check',
     );

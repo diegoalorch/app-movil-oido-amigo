@@ -32,12 +32,16 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text('Paciente Asignado'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'home');
+            },
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'settings');
+            },
           ),
           Divider(
             height: 350,
