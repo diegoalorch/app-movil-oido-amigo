@@ -1,0 +1,57 @@
+import 'package:app_movile_oido_amigo/services/auth_service.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class NavBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final authService = Provider.of<AuthServices>(context, listen: false);
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          UserAccountsDrawerHeader(
+            accountName: Text('Helmer M'),
+            accountEmail: Text('helmermartinez@upeu.edu.pe'),
+            currentAccountPicture: CircleAvatar(
+              child: ClipOval(
+                child: Image(
+                  image: AssetImage('assets/avatar.png'),
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(133, 24, 51, 1),
+                image: DecorationImage(
+                    image: AssetImage('assets/backsidebar.jpg'),
+                    fit: BoxFit.cover)),
+          ),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text('Paciente Asignado'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
+            onTap: () {},
+          ),
+          Divider(
+            height: 350,
+          ),
+          ListTile(
+            leading: Icon(Icons.logout_outlined),
+            title: Text('Log Out'),
+            onTap: () {
+              authService.logOut();
+              Navigator.pushReplacementNamed(context, 'login');
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}

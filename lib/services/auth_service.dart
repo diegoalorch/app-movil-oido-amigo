@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,8 +19,9 @@ class AuthServices extends ChangeNotifier {
         body: json.encode({"username": nomuser, "password": password}),
         headers: {"Content-Type": "application/json"});
     final Map<String, dynamic> decodedResp = json.decode(resp.body);
+    final token = json.decode(resp.body)['accessToken'];
 
-    log.i(decodedResp['accessToken']);
+    //log.i('token: ' + token);
 
     if (decodedResp.containsKey('accessToken')) {
       await storage.write(
