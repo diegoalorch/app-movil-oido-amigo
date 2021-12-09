@@ -6,13 +6,8 @@ import 'package:app_movile_oido_amigo/pages/reporte1_page.dart';
 import 'package:app_movile_oido_amigo/pages/reporte2_page.dart';
 import 'package:app_movile_oido_amigo/pages/reporte3_page.dart';
 import 'package:app_movile_oido_amigo/pages/reportef_page.dart';
-import 'package:app_movile_oido_amigo/pages/sesion1_page.dart';
-import 'package:app_movile_oido_amigo/pages/sesion2_page.dart';
-import 'package:app_movile_oido_amigo/pages/sesion3_page.dart';
-import 'package:app_movile_oido_amigo/pages/settings_page.dart';
 import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:app_movile_oido_amigo/services/pacientes_service.dart';
-import 'widgets/navBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -57,10 +52,6 @@ class MyApp extends StatelessWidget {
         'home': (_) => HomePage(),
         'check': (_) => CheckAuthPage(),
         'pac': (_) => Paciente(),
-        'settings': (_) => SettingsPage(),
-        'ses1': (_) => Sesion1(),
-        'ses2': (_) => Sesion2(),
-        'ses3': (_) => Sesion3(),
         'rep1': (_) => Reporte1(),
         'rep2': (_) => Reporte2(),
         'rep3': (_) => Reporte3(),

@@ -1,8 +1,10 @@
+import 'package:app_movile_oido_amigo/pages/settings_page.dart';
 import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NavBar extends StatelessWidget {
+  AuthServices authServices = AuthServices();
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthServices>(context, listen: false);
@@ -40,7 +42,12 @@ class NavBar extends StatelessWidget {
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, 'settings');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SettingsPage(
+                            authServices: authServices,
+                          )));
             },
           ),
           Divider(

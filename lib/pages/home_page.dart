@@ -1,6 +1,10 @@
+import 'package:app_movile_oido_amigo/pages/sesion1_page.dart';
+import 'package:app_movile_oido_amigo/pages/sesion2_page.dart';
+import 'package:app_movile_oido_amigo/pages/sesion3_page.dart';
 import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:app_movile_oido_amigo/services/notifier_service.dart';
 import 'package:app_movile_oido_amigo/services/pacientes_service.dart';
+import 'package:app_movile_oido_amigo/services/sesion_service.dart';
 import 'package:app_movile_oido_amigo/widgets/navBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Ses1Service ses1Service = Ses1Service();
+
   @override
   Widget build(BuildContext context) {
     var noty = NotificationsService;
@@ -94,7 +100,11 @@ class _HomePageState extends State<HomePage> {
               top: 130,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('ses1');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Sesion1(ses1Service: ses1Service)));
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -136,7 +146,11 @@ class _HomePageState extends State<HomePage> {
               top: 130,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('ses3');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Sesion3(ses1Service: ses1Service)));
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -178,7 +192,11 @@ class _HomePageState extends State<HomePage> {
               top: 130,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('ses2');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Sesion2(ses1Service: ses1Service)));
                 },
                 child: Container(
                     alignment: Alignment.center,

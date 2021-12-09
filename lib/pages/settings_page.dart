@@ -1,14 +1,38 @@
+import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:app_movile_oido_amigo/widgets/navBar.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({Key? key}) : super(key: key);
+  SettingsPage({Key? key, required this.authServices}) : super(key: key);
+  AuthServices authServices;
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  TextEditingController pass = new TextEditingController();
+  TextEditingController passw = new TextEditingController();
+  TextEditingController user = new TextEditingController();
+
+  List psi = [];
+  AuthServices authServices = AuthServices();
+
+  initialise() {
+    authServices.readPsicologo().then((value) => {
+          setState(() {
+            psi = value;
+          }),
+        });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialise();
+  }
+
   @override
   Widget build(BuildContext context) {
     var getScreenHeight = MediaQuery.of(context).size.height;
@@ -27,14 +51,14 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
       body: ListView.builder(
-          itemCount: 1,
+          itemCount: psi.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
               alignment: Alignment.center,
-              height: 670,
+              height: 800,
               child: Stack(
                 children: [
                   Positioned(
@@ -42,7 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       left: 20,
                       child: Material(
                         child: Container(
-                          height: 590,
+                          height: 650,
                           width: getScreenWidth * 0.9,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -76,7 +100,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     top: 80,
                     left: 110,
                     child: Text(
-                      'Nombre y Apellido',
+                      psi[index]['nombres'],
                       style: TextStyle(
                           fontSize: 30,
                           color: Color.fromRGBO(143, 20, 64, 1),
@@ -97,12 +121,12 @@ class _SettingsPageState extends State<SettingsPage> {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.work_outline),
+                                Icon(Icons.home_work_outlined),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
-                                  'Grado Academico',
+                                  psi[index]['universidad'],
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.grey,
@@ -119,7 +143,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 width: 10,
                               ),
                               Text(
-                                'Correo',
+                                psi[index]['correo'],
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -130,12 +154,12 @@ class _SettingsPageState extends State<SettingsPage> {
                               height: 15,
                             ),
                             Row(children: [
-                              Icon(Icons.location_on),
+                              Icon(Icons.work_outline),
                               SizedBox(
                                 width: 10,
                               ),
                               Text(
-                                'Pais',
+                                psi[index]['gradoacademico'],
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -146,8 +170,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                       )),
                   Positioned(
-                      top: 130,
-                      right: 30,
+                      top: 250,
+                      left: 30,
                       child: Container(
                         padding: EdgeInsets.all(10),
                         height: 200,
@@ -159,12 +183,12 @@ class _SettingsPageState extends State<SettingsPage> {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.home_work_outlined),
+                                Icon(Icons.location_on),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
-                                  'Universidad',
+                                  psi[index]['pais'],
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.grey,
@@ -181,7 +205,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 width: 10,
                               ),
                               Text(
-                                'DNI',
+                                psi[index]['dni'],
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -197,7 +221,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 width: 10,
                               ),
                               Text(
-                                'Telefono',
+                                psi[index]['telefono'],
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -209,7 +233,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       )),
                   Positioned(
                       left: 45,
-                      top: 270,
+                      top: 380,
                       child: Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,6 +256,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   child: Column(
                                     children: [
                                       TextFormField(
+                                        controller: pass,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           fillColor: Colors.white,
@@ -256,6 +281,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                         height: 15,
                                       ),
                                       TextFormField(
+                                        controller: passw,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           fillColor: Colors.white,
@@ -279,6 +305,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                         height: 15,
                                       ),
                                       TextFormField(
+                                        controller: user,
                                         autocorrect: false,
                                         decoration: InputDecoration(
                                           fillColor: Colors.white,
@@ -317,7 +344,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                   Positioned(
-                      top: 560,
+                      top: 720,
                       right: 35,
                       child: MaterialButton(
                         padding: EdgeInsets.only(
@@ -327,7 +354,11 @@ class _SettingsPageState extends State<SettingsPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20))),
-                        onPressed: () {},
+                        onPressed: () {
+                          widget.authServices.updatePsicologo(
+                              pass.text, passw.text, user.text);
+                          Navigator.pop(context, true);
+                        },
                         child: Text(
                           'Save',
                           style: TextStyle(

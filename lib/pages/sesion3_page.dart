@@ -1,13 +1,38 @@
+import 'package:app_movile_oido_amigo/services/pacientes_service.dart';
+import 'package:app_movile_oido_amigo/services/sesion_service.dart';
 import 'package:flutter/material.dart';
 
 class Sesion3 extends StatefulWidget {
-  Sesion3({Key? key}) : super(key: key);
+  Sesion3({Key? key, required this.ses1Service}) : super(key: key);
+  Ses1Service ses1Service;
 
   @override
   _Sesion3State createState() => _Sesion3State();
 }
 
 class _Sesion3State extends State<Sesion3> {
+  TextEditingController linkController = new TextEditingController();
+  TextEditingController fechaController = new TextEditingController();
+  TextEditingController horaController = new TextEditingController();
+
+  List pac = [];
+  PacienteService pacSerivce = PacienteService();
+
+  initialise() {
+    pacSerivce.readPaciente().then((value) => {
+          setState(() {
+            pac = value;
+          }),
+        });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialise();
+  }
+
   @override
   Widget build(BuildContext context) {
     var getScreenHeight = MediaQuery.of(context).size.height;
@@ -96,6 +121,7 @@ class _Sesion3State extends State<Sesion3> {
                               child: Column(
                                 children: [
                                   TextFormField(
+                                    controller: linkController,
                                     autocorrect: false,
                                     decoration: InputDecoration(
                                       fillColor: Colors.white,
@@ -119,6 +145,7 @@ class _Sesion3State extends State<Sesion3> {
                                     height: 15,
                                   ),
                                   TextFormField(
+                                    controller: fechaController,
                                     autocorrect: false,
                                     decoration: InputDecoration(
                                       fillColor: Colors.white,
@@ -142,6 +169,7 @@ class _Sesion3State extends State<Sesion3> {
                                     height: 15,
                                   ),
                                   TextFormField(
+                                    controller: horaController,
                                     autocorrect: false,
                                     decoration: InputDecoration(
                                       fillColor: Colors.white,
@@ -177,7 +205,14 @@ class _Sesion3State extends State<Sesion3> {
                     color: Color.fromRGBO(133, 24, 51, 1),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.ses1Service.crateSes3(
+                          linkController.text,
+                          fechaController.text,
+                          horaController.text,
+                          int.parse(pac[0]['idpaciente']));
+                      Navigator.pop(context, true);
+                    },
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 60, vertical: 10),
