@@ -2,6 +2,13 @@ import 'package:app_movile_oido_amigo/pages/check_auth_page.dart';
 import 'package:app_movile_oido_amigo/pages/home_page.dart';
 import 'package:app_movile_oido_amigo/pages/login_page.dart';
 import 'package:app_movile_oido_amigo/pages/paciente_info.dart';
+import 'package:app_movile_oido_amigo/pages/reporte1_page.dart';
+import 'package:app_movile_oido_amigo/pages/reporte2_page.dart';
+import 'package:app_movile_oido_amigo/pages/reporte3_page.dart';
+import 'package:app_movile_oido_amigo/pages/reportef_page.dart';
+import 'package:app_movile_oido_amigo/pages/sesion1_page.dart';
+import 'package:app_movile_oido_amigo/pages/sesion2_page.dart';
+import 'package:app_movile_oido_amigo/pages/sesion3_page.dart';
 import 'package:app_movile_oido_amigo/pages/settings_page.dart';
 import 'package:app_movile_oido_amigo/services/auth_service.dart';
 import 'package:app_movile_oido_amigo/services/pacientes_service.dart';
@@ -51,6 +58,13 @@ class MyApp extends StatelessWidget {
         'check': (_) => CheckAuthPage(),
         'pac': (_) => Paciente(),
         'settings': (_) => SettingsPage(),
+        'ses1': (_) => Sesion1(),
+        'ses2': (_) => Sesion2(),
+        'ses3': (_) => Sesion3(),
+        'rep1': (_) => Reporte1(),
+        'rep2': (_) => Reporte2(),
+        'rep3': (_) => Reporte3(),
+        'repf': (_) => ReporteF(),
       },
       initialRoute: 'check',
     );

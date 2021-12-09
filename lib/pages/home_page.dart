@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
               top: 10,
               child: GestureDetector(
                 onTap: () {
-                  Text('Paciente');
+                  Navigator.of(context).pushNamed('repf');
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
               top: 130,
               child: GestureDetector(
                 onTap: () {
-                  Text('Paciente');
+                  Navigator.of(context).pushNamed('ses1');
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
               top: 250,
               child: GestureDetector(
                 onTap: () {
-                  Text('Paciente');
+                  Navigator.of(context).pushNamed('rep1');
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -136,49 +136,7 @@ class _HomePageState extends State<HomePage> {
               top: 130,
               child: GestureDetector(
                 onTap: () {
-                  Text('Paciente');
-                },
-                child: Container(
-                    alignment: Alignment.center,
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(143, 20, 64, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    child: Text('Sesion 2',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white))),
-              ),
-            ),
-            Positioned(
-              right: 25,
-              top: 250,
-              child: GestureDetector(
-                onTap: () {
-                  Text('Paciente');
-                },
-                child: Container(
-                    alignment: Alignment.center,
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(143, 20, 64, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    child: Text('Reporte 2',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white))),
-              ),
-            ),
-            Positioned(
-              left: getScreenWidth * .38,
-              top: 130,
-              child: GestureDetector(
-                onTap: () {
-                  Text('Paciente');
+                  Navigator.of(context).pushNamed('ses3');
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -195,11 +153,11 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              left: getScreenWidth * .38,
+              right: 25,
               top: 250,
               child: GestureDetector(
                 onTap: () {
-                  Text('Paciente');
+                  Navigator.of(context).pushNamed('rep3');
                 },
                 child: Container(
                     alignment: Alignment.center,
@@ -209,6 +167,48 @@ class _HomePageState extends State<HomePage> {
                         color: Color.fromRGBO(143, 20, 64, 1),
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Text('Reporte 3',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white))),
+              ),
+            ),
+            Positioned(
+              left: getScreenWidth * .38,
+              top: 130,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('ses2');
+                },
+                child: Container(
+                    alignment: Alignment.center,
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(143, 20, 64, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Text('Sesion 2',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white))),
+              ),
+            ),
+            Positioned(
+              left: getScreenWidth * .38,
+              top: 250,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('rep2');
+                },
+                child: Container(
+                    alignment: Alignment.center,
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(143, 20, 64, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Text('Reporte 2',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
